@@ -1,18 +1,16 @@
-using Core.Cards;
-
 namespace Core
 {
     public struct Damage
     {
         public float Amount;
         public DamageType Type;
-        public Unit Attacker;
+        public IAttacker Attacker;
 
-        public Damage(float amount, DamageType type = DamageType.Physical, Unit attacker = null)
+        public Damage(float amount, IAttacker attacker, DamageType type = DamageType.Physical)
         {
             Amount = amount;
-            Type = type;
             Attacker = attacker;
+            Type = type;
         }
     }
 

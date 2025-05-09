@@ -5,8 +5,11 @@ namespace Core.Stats
         MaxHealth,
         Armor,
         AttackDamage,
+        FirstAttackSpeed,
         AttackSpeed,
         AttackRange,
+        ViewRange,
+        ChaseRange,
         Speed
     }
 }

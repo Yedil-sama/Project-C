@@ -6,7 +6,7 @@ namespace Core.Cards
     {
         string CardName { get; }
         int ManaCost { get; }
-        void Play(Vector3 targetPosition);
+        Sprite Icon { get; }
+        void Play(Player owner, Vector3 position);
     }
-
 }

@@ -17,6 +17,20 @@ namespace Core.Stats
 
         private readonly List<StatModifier> modifiers = new();
 
+        public void LoadFrom(UnitStatsData data)
+        {
+            maxHealth = data.maxHealth;
+            armor = data.armor;
+            attackDamage = data.attackDamage;
+            firstAttackSpeed = data.firstAttackSpeed;
+            attackSpeed = data.attackSpeed;
+            attackRange = data.attackRange;
+            viewRange = data.viewRange;
+            chaseRange = data.chaseRange;
+            speed = data.speed;
+        }
+
+
         public float GetStat(StatType type)
         {
             float baseValue = type switch
@@ -37,7 +51,6 @@ namespace Core.Stats
             foreach (var mod in modifiers)
             {
                 if (mod.StatType != type) continue;
-
                 result += mod.ModifierType == ModifierType.Flat ? mod.Amount : baseValue * mod.Amount;
             }
 
@@ -48,33 +61,16 @@ namespace Core.Stats
         {
             switch (type)
             {
-                case StatType.MaxHealth:
-                    maxHealth = value;
-                    break;
-                case StatType.Armor:
-                    armor = value;
-                    break;
-                case StatType.AttackDamage:
-                    attackDamage = value;
-                    break;
-                case StatType.FirstAttackSpeed:
-                    firstAttackSpeed = value;
-                    break;
-                case StatType.AttackSpeed:
-                    attackSpeed = value;
-                    break;
-                case StatType.AttackRange:
-                    attackRange = value;
-                    break;
-                case StatType.ViewRange:
-                    viewRange = value;
-                    break;
-                case StatType.ChaseRange:
-                    chaseRange = value;
-                    break;
-                case StatType.Speed:
-                    speed = value;
-                    break;
+                case StatType.MaxHealth: maxHealth = value; break;
+                case StatType.Armor: armor = value; break;
+                case StatType.AttackDamage: attackDamage = value; break;
+                case StatType.FirstAttackSpeed: firstAttackSpeed = value; break;
+                case StatType.AttackSpeed: attackSpeed = value; break;
+                case StatType.AttackRange: attackRange = value; break;
+                case StatType.ViewRange: viewRange = value; break;
+                case StatType.ChaseRange: chaseRange = value; break;
+                case StatType.Speed: speed = value; break;
+                default: Debug.LogWarning($"[UnitStats] Unhandled stat type: {type}"); break;
             }
         }
 

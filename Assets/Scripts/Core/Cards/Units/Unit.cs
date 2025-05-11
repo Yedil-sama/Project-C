@@ -12,6 +12,9 @@ namespace Core.Cards.Units
     {
         public UnitAnimator unitAnimator;
 
+        protected UnitStats stats;
+        public UnitStats Stats => stats;
+
         [SerializeField] protected Player owner;
         public Player Owner => owner;
         [SerializeField] protected float health;
@@ -37,7 +40,6 @@ namespace Core.Cards.Units
 
         protected readonly List<IPassive> passives = new();
         protected Animator animator;
-        protected UnitStats stats;
 
         public void Initialize(Player owner)
         {
@@ -115,8 +117,9 @@ namespace Core.Cards.Units
             }
 
             unitAnimator.PlayDie();
-            OnDie?.Invoke();
             Destroy(gameObject);
+
+            OnDie?.Invoke();
         }
 
         public virtual void Play(Vector3 position)
@@ -165,6 +168,7 @@ namespace Core.Cards.Units
             }
 
             OnGetPreMitigationDamage?.Invoke(damage.Amount);
+
             return damage.Amount;
         }
 
@@ -189,6 +193,7 @@ namespace Core.Cards.Units
             }
 
             OnGetPostMitigationDamage?.Invoke(result);
+
             return result;
         }
 

@@ -13,13 +13,13 @@ namespace Core.Cards.Units
 
         public Unit CreateUnit(UnitData data, Vector3 position, Quaternion rotation, Player owner)
         {
-            GameObject go = Object.Instantiate(data.prefab, position, rotation, spawnParent);
-            Unit unit = go.GetComponent<Unit>();
+            GameObject gameObject = Object.Instantiate(data.prefab, position, rotation, spawnParent);
+            Unit unit = gameObject.GetComponent<Unit>();
 
             if (unit == null)
             {
                 Debug.LogError($"Prefab {data.prefab.name} does NOT contain a Unit component!");
-                Object.Destroy(go);
+                Object.Destroy(gameObject);
                 return null;
             }
 

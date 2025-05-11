@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Cards
@@ -7,6 +8,7 @@ namespace Core.Cards
         string CardName { get; }
         int ManaCost { get; }
         Sprite Icon { get; }
+        event Action<int> ManaCostChanged;
         void Play(Player owner, Vector3 position);
     }
 }
